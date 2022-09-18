@@ -1,31 +1,20 @@
 import React, { useState } from 'react';
-import { useController, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { Button } from '../../../components/Button';
 import { PageContainer } from '../../../components/Container';
 import { CustomIcon } from '../../../components/CustomIcon';
+import { InputForm } from '../../../components/InputForm';
 
 import {
   AddressList,
   FormContainer,
-  Input,
-  InputLabel,
   ItemContainer,
   ItemText,
   ListContainer,
   TextContainer,
   Line,
 } from './styles';
-
-const InputForm = ({ name, control }) => {
-  const { field } = useController({
-    control,
-    defaultValue: '',
-    name,
-  });
-
-  return <Input value={field.value} onChangeText={field.onChange} />;
-};
 
 const fake: UserAddress[] = [
   {
@@ -74,17 +63,10 @@ const Address = () => {
   return (
     <PageContainer>
       <FormContainer>
-        <InputLabel>Rua/Avenida</InputLabel>
-        <InputForm name="street" control={control} />
-
-        <InputLabel>Número</InputLabel>
-        <InputForm name="number" control={control} />
-
-        <InputLabel>Bairro</InputLabel>
-        <InputForm name="neighborhood" control={control} />
-
-        <InputLabel>Complemento</InputLabel>
-        <InputForm name="complement" control={control} />
+        <InputForm label="Rua/Avenida" name="street" control={control} />
+        <InputForm label="Número" name="number" control={control} />
+        <InputForm label="Bairro" name="neighborhood" control={control} />
+        <InputForm label="Complemento" name="complement" control={control} />
 
         <Button title="Cadastrar" onPress={handleSubmit(onSubmit)} />
       </FormContainer>
